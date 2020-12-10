@@ -1,0 +1,45 @@
+
+
+<div class="site-page-header-ghost-wrapper">
+  <nz-page-header nzBackIcon [nzGhost]="false">
+    <nz-page-header-title>Quản Lý Học Tập</nz-page-header-title>
+    <nz-page-header-extra>
+      <input nz-input  [(ngModel)]="value" style="width: 300px;"/>
+      <button nz-button (click)="timkiem()">Tìm Kiếm</button>
+    </nz-page-header-extra>
+
+  </nz-page-header>
+</div>
+
+
+
+
+<nz-table #basicTable [nzData]="tintuc">
+  <thead>
+    <tr>
+      <th>Tiêu đề</th>
+      <th>Người đăng</th>
+      <th>Thời gian</th>
+      <th>#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.tieude}}</td>
+      <td>{{data.createdBy}}</td>
+      <td>{{data.createdDate}}</td>
+      <td>
+        <a routerLink="tin-tuc/{{data.id}}">Chi Tiết </a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a style="color: red;"
+        nz-popconfirm
+        nzPopconfirmTitle="Bạn có muốn xóa không?"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="confirm(data.id)"
+        (nzOnCancel)="cancel()"
+        
+        >Xóa</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

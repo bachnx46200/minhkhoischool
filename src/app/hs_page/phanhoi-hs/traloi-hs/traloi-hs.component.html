@@ -1,0 +1,44 @@
+
+<div class="content-wrapper">
+
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <nz-skeleton [nzLoading]="loading">
+                        <div class="site-page-header-ghost-wrapper">
+                            <nz-page-header nzBackIcon [nzGhost]="false">
+                                <nz-page-header-title>
+                                    Tiêu đề ở đây
+                                </nz-page-header-title>
+                                <nz-page-header-content>
+
+                                    <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+                                        <ng-template #item let-item>
+                                          <nz-comment [nzAuthor]="item.author" [nzDatetime]="item.datetime">
+                                            <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
+                                            <nz-comment-content>
+                                              <p>{{ item.content }}</p>
+                                            </nz-comment-content>
+                                            
+                                          </nz-comment>
+                                        </ng-template>
+                                      </nz-list>
+                                      
+
+                                      <angular-editor  [config]="config"></angular-editor>
+                                       <br>
+                                      <button nz-button nzType="default" nzBlock>Gửi </button>
+                                </nz-page-header-content>
+                            </nz-page-header>
+                        </div>
+                    </nz-skeleton>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

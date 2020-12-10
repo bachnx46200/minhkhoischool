@@ -1,0 +1,73 @@
+<nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+  <div class="content-wrapper">
+
+    <div class="row">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+
+              <div class="site-page-header-ghost-wrapper">
+                <nz-page-header nzBackIcon [nzGhost]="false">
+                  <nz-page-header-title>
+                    Phản hồi của phụ huynh
+                  </nz-page-header-title>
+
+                  <nz-page-header-extra>
+                    <button nz-button>Tất cả</button>
+                    <button nz-button>Đã trả lời</button>
+                    <button nz-button>Chưa trả lời</button>
+                  </nz-page-header-extra>
+                  <nz-page-header-content>
+
+                    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+                      <thead>
+                        <tr>
+                          <th nzCustomFilter>
+                            Tiêu đề
+                            <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                              [nzDropdownMenu]="menu">
+                              <i nz-icon nzType="search"></i>
+                            </nz-filter-trigger>
+                          </th>
+                          <th>Thời gian</th>
+                          <th>Trạng thái</th>
+                          <th>#</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of nzTable.data">
+                          <td>{{ data.name }}</td>
+                          <td>{{ data.age }}</td>
+                          <td>{{ data.address }}</td>
+                          <td>
+                            <a nz-button nzType="link" routerLink="../chi-tiet-phan-hoi">Chi tiết</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </nz-table>
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                      <div class="ant-table-filter-dropdown">
+                        <div class="search-box">
+                          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+                          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+                            Search
+                          </button>
+                          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+                        </div>
+                      </div>
+                    </nz-dropdown-menu>
+
+                  </nz-page-header-content>
+                </nz-page-header>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nz-spin>

@@ -1,0 +1,133 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>THCS Minh Khôi</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li routerLink="trang-chu" nz-submenu nzOpen nzTitle="Tin Tức" nzIcon="dashboard">
+
+      </li>
+      <li (click)="open()" nz-submenu nzOpen nzTitle="Thông Tin Tài Khoản" nzIcon="user">
+
+      </li>
+      <li nz-submenu nzOpen nzTitle="Bảng Điểm & Kết Quả" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="bang-diem">Bảng Điểm</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="ket-qua-cuoi-nam">Kết Quả cuối năm</a>
+          </li>
+        </ul>
+      </li>
+      <li (click)="onLogOut()" nz-submenu nzOpen nzTitle="Đăng Xuất" nzIcon="logout">
+
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+        <span class="header-trigger">
+          <i class="trigger" (click)="open()" nz-icon nzType="user" nzTheme="outline">
+          </i>
+        </span>
+        <span class="header-trigger">
+          <i class="trigger" (click)="search()" nz-icon nzType="search" nzTheme="outline"></i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+
+
+<nz-drawer [nzVisible]="isvisible" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="close()" *ngIf="hocsinh">
+
+  <nz-descriptions [nzColumn]="2" nzTitle="Thông tin tài khoản">
+    <nz-descriptions-item nzTitle="Mã học sinh" [nzSpan]="1"> {{hocsinh.mahocsinh}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Họ và tên" [nzSpan]="1">{{hocsinh.hoten}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Học lớp" [nzSpan]="1">{{hocsinh.malop}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Giới tính" [nzSpan]="1">{{hocsinh.gioitinh}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Ngày sinh" [nzSpan]="1">{{hocsinh.ngaysinh}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Nơi sinh" [nzSpan]="1">{{hocsinh.noisinh}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="CMND " [nzSpan]="1">{{hocsinh.cmnd}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Dân tộc " [nzSpan]="1">{{hocsinh.dantoc}} </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Tôn giáo " [nzSpan]="1">{{hocsinh.tongiao}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Ngày vào đoàn" [nzSpan]="1">{{hocsinh.ngayvaodoan}}</nz-descriptions-item>
+
+  </nz-descriptions>
+  <nz-divider></nz-divider>
+  <nz-descriptions [nzColumn]="2" nzTitle="Thông tin liên lạc">
+    <nz-descriptions-item nzTitle="Email" [nzSpan]="1">{{hocsinh.email}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Số điện thoại" [nzSpan]="1">{{hocsinh.dienthoai}}</nz-descriptions-item>>
+    <nz-descriptions-item nzTitle="Địa chỉ" [nzSpan]="2">
+      {{hocsinh.diachi}}
+    </nz-descriptions-item>
+  </nz-descriptions>
+  <nz-divider></nz-divider>
+  <nz-descriptions [nzColumn]="2" nzTitle="Thông tin phụ huynh">
+    <nz-descriptions-item nzTitle="Họ tên bố" [nzSpan]="1">{{hocsinh.hotenBo}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Điện thoại bố" [nzSpan]="1">{{hocsinh.dienthoaiBo}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Đơn vị công tác" [nzSpan]="2">
+      {{hocsinh.dvCongTacBo}}
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Họ tên mẹ" [nzSpan]="1">{{hocsinh.hotenMe}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Điện thoại mẹ" [nzSpan]="1">{{hocsinh.dienthoaiMe}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Đơn vị công tác" [nzSpan]="2">
+      {{hocsinh.dvCongTacMe}}
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Người dám hộ" [nzSpan]="1">{{hocsinh.nguoidamho}}</nz-descriptions-item>
+  </nz-descriptions>
+</nz-drawer>
+
+
+
+
+
+<nz-drawer [nzVisible]="isvisible2" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="close2()"*ngFor="let tthoatdong of tthoatdong" >
+
+  <nz-divider></nz-divider>
+  <nz-descriptions  >
+    <nz-descriptions-item nzTitle="Tìm Kiếm"   >
+      <nz-input-group [nzSuffix]="suffixIconSearch" style="width: 500px;">
+        <input type="text" nz-input  />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+    </nz-descriptions-item>
+  </nz-descriptions>
+  <nz-divider></nz-divider>
+  
+
+
+  <nz-page-header class="site-page-header">
+    <nz-breadcrumb nz-page-header-breadcrumb>
+      <nz-breadcrumb-item>
+        <nz-list nzItemLayout="horizontal">
+          <nz-list-item *ngFor="let tthoatdong of tthoatdong">
+            <nz-list-item-meta nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              nzDescription={{tthoatdong.createdDate}}>
+              <nz-list-item-meta-title>
+                <a routerLink="tin-tuc">{{tthoatdong.tieude}}</a>
+              </nz-list-item-meta-title>
+            </nz-list-item-meta>
+          </nz-list-item>
+
+        </nz-list>
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </nz-page-header>
+</nz-drawer>

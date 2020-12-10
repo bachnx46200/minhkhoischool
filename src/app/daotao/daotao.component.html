@@ -1,0 +1,81 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>THCS Minh Khôi</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li routerLink="trang-chu" nz-submenu nzOpen nzTitle="Tin Tức" nzIcon="dashboard">
+      
+      </li>
+      <li (click)="open()" nz-submenu nzOpen nzTitle="Thông Tin Tài Khoản" nzIcon="user">
+      
+      </li>
+      <li nz-submenu nzOpen nzTitle="Quản Lý Tin Tức" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="them-moi-tin-tuc">Thêm Mới Tin Tức</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="quan-ly-hoat-dong">Hoạt Động</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="quan-ly-hoc-tap">Học Tập</a>
+          </li>
+        </ul>
+      </li>
+      <li  (click)="onLogOut()"nz-submenu nzOpen nzTitle="Đăng Xuất" nzIcon="logout">
+      
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
+        </span>
+        <span class="header-trigger">
+          <i class="trigger" (click)="open()" nz-icon nzType="user" nzTheme="outline">
+          </i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+
+
+  <nz-drawer [nzVisible]="isvisible" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="close()" *ngIf="giaovien">
+    <p class="title" style=" margin-bottom: 24px;">Thông tin người dùng </p>
+    <nz-descriptions [nzColumn]="2" nzTitle="Thông tin tài khoản">
+      <nz-descriptions-item nzTitle="Mã giáo viên" [nzSpan]="1"> {{giaovien.magiaovien}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Họ và tên" [nzSpan]="1">{{giaovien.hoten}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Giới tính" [nzSpan]="1">{{giaovien.gioitinh}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Ngày sinh" [nzSpan]="1">{{giaovien.ngaysinh}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="CMND " [nzSpan]="1">{{giaovien.cmnd}}</nz-descriptions-item>
+      
+    </nz-descriptions>
+    <nz-divider></nz-divider>
+    <nz-descriptions [nzColumn]="2" nzTitle="Thông tin liên lạc">
+      <nz-descriptions-item nzTitle="Số điện thoại" [nzSpan]="1">{{giaovien.dienthoai}}</nz-descriptions-item>>
+      <nz-descriptions-item nzTitle="Địa chỉ" [nzSpan]="2">
+        {{giaovien.diachi}}
+      </nz-descriptions-item>
+    </nz-descriptions>
+    <nz-divider></nz-divider>
+  </nz-drawer>

@@ -1,0 +1,50 @@
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                <i class="mdi mdi-content-save-all"></i>
+            </span> Tài Khoản Giáo Viên </h3>
+    </div>
+    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+        <thead>
+            <tr>
+                <th nzCustomFilter>
+                    Email
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                        [nzDropdownMenu]="menu">
+                        <i nz-icon nzType="search"></i>
+                    </nz-filter-trigger>
+                </th>
+                <th>Chức vụ</th>
+                <th>Mã giáo viên</th>
+                <th>Trạng thái</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of nzTable.data">
+                <td>{{ data.name }}</td>
+                <td>{{ data.age }}</td>
+                <td>{{ data.address }}</td>
+                <td>{{ data.address&& 'Hoạt động' || 'Đã khóa' }}</td>
+                <td>
+                    <a style="color:royalblue;" (click)="showModal()">Chi tiết </a>
+                    <a style="color: red;" routerLink="../chinh-sua-thong-bao">{{ data.address&& 'Khóa tài khoản' || 'Mở tài khoản' }} </a>
+                    
+                  </td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+            <div class="search-box">
+                <input type="text" nz-input placeholder="Tìm kiếm" [(ngModel)]="searchValue" />
+                <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+                    Tìm kiếm
+                </button>
+                <button nz-button nzSize="small" (click)="reset()">Tải lại</button>
+            </div>
+        </div>
+    </nz-dropdown-menu>
+
+</div>
